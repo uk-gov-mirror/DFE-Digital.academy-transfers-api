@@ -93,11 +93,27 @@ namespace Frontend.Controllers
         {
             var academyIdsString = string.Join(",", academyIds.Select(id => id.ToString()).ToList());
             HttpContext.Session.SetString("OutgoingAcademyIds", academyIdsString);
-            
+
             return RedirectToAction("IncomingTrustIdentified");
         }
 
         public IActionResult IncomingTrustIdentified()
+        {
+            return View();
+        }
+
+        public IActionResult SubmitIncomingTrustIdentified(string incomingTrustIdentified)
+        {
+            var nextAction = incomingTrustIdentified == "yes" ? "IncomingTrust" : "CheckYourAnswers";
+            return RedirectToAction(nextAction);
+        }
+
+        public IActionResult IncomingTrust()
+        {
+            return View();
+        }
+
+        public IActionResult CheckYourAnswers()
         {
             return View();
         }

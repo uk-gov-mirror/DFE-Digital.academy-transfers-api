@@ -250,6 +250,26 @@ namespace Frontend.Tests.ControllerTests
 
         #endregion
 
+        #region SubmitIncomingTrustIdentified
+
+        [Fact]
+        private void GivenYes_RedirectToIncomingTrustPage()
+        {
+            var response = _subject.SubmitIncomingTrustIdentified("yes");
+            var redirectResponse = Assert.IsType<RedirectToActionResult>(response);
+            Assert.Equal("IncomingTrust", redirectResponse.ActionName);
+        }
+        
+        [Fact]
+        private void GivenNo_RedirectToCheckYourAnswers()
+        {
+            var response = _subject.SubmitIncomingTrustIdentified("no");
+            var redirectResponse = Assert.IsType<RedirectToActionResult>(response);
+            Assert.Equal("CheckYourAnswers", redirectResponse.ActionName);
+        }
+
+        #endregion
+        
         #region HelperMethods
 
         private void AssertTrustsAreMappedCorrectly(Guid trustId, Guid trustTwoId)
