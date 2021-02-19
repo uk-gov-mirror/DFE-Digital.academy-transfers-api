@@ -113,6 +113,11 @@ namespace Frontend.Controllers
             return View();
         }
 
+        public async Task<IActionResult> SearchIncomingTrust()
+        {
+            return null;
+        }
+
         public IActionResult CheckYourAnswers()
         {
             return View();
